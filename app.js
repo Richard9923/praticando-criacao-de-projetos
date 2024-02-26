@@ -130,5 +130,4 @@ function criandoSenha() {
 }
 
 let senha = [];
-
 criandoSenha();
