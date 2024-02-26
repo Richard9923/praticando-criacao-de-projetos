@@ -103,22 +103,32 @@ function criandoSenha() {
     }
   }
   function adicionandoSimbolos(quantidadeSimbolos) {
-    let randomNum = Math.floor(Math.random() * simbolos.length);
-    senha.push(simbolos[randomNum]);
+    for (let i = 0; i < quantidadeSimbolos; i++) {
+      let randomNum = Math.floor(Math.random() * simbolos.length);
+      senha.push(simbolos[randomNum]);
+    }
   }
   function convertendoListaParaString() {
-    for (caracter of senha) {
+    let senhaEmbaralhada = embaralharLista(senha.slice());
+    for (caracter of senhaEmbaralhada) {
       senhaFinal += caracter;
     }
   }
+  function embaralharLista(lista) {
+    return lista.sort(function () {
+      return 0.5 - Math.random();
+    });
+  }
+
   adicionandoLetras(numLetras);
   adicionandoNumeros(numNumeros);
   adicionandoSimbolos(numSimbolos);
+
+  let senhaFinal = "";
   convertendoListaParaString();
+  console.log(`Senha produzida: ${senhaFinal}`);
 }
 
 let senha = [];
-let senhaFinal = "";
+
 criandoSenha();
-console.log(senha);
-console.log(`Senha produzida: ${senhaFinal}`);
